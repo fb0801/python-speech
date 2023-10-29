@@ -2,8 +2,11 @@ import requests
 from api_secret import API_KEY_ASSEMBLYAI
 import sys
 
-#upload
+#endpoints
 upload_endpoint = "https://api.assemblyai.com/v2/upload"
+transcript_endpoint = "https://api.assemblyai.com/v2/transcript"
+
+#upload
 filename = sys.argv[1]
 
 def read_file(filename, chunk_size = 5242880):
@@ -19,3 +22,11 @@ response = requests.post(upload_endpoint,
                          data= read_file(filename))
 
 print(response.json())
+
+audio_url = response.json()['upload_url']
+
+#transcript
+json = {"audio_url": audio_url}
+response = requests.post(transcript_endpoint, json= json, headers=headers)
+print(response.json())
+
