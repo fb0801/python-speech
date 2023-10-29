@@ -36,10 +36,8 @@ def transcribe(audio_url):
     job_id = transcript_response.json()['id']
     return job_id
 
-audio_url = upload(filename)
-transcript_id = transcribe(audio_url)
 
-print(transcript_id)
+
 
 
 #poll
@@ -48,14 +46,25 @@ def poll(transcript_id):
     polling_responnse = requests.get(polling_endpoint, headers=headers)
     return polling_responnse.json()
 
-def get_transcription_result_url():
-    transcript_id = transcribe()
+def get_transcription_result_url(audio_url):
+    transcript_id = transcribe(audio_url)
     while True:
         data = poll(transcript_id)
-        polling_responnse = requests.get(polling_endpoint, headers=headers)
-        if polling_responnse.json()['status'] == 'completed':
-            return polling_responnse
-        elif polling_responnse.json()['status'] == 'error':
-            return 'error'
+        if data['status'] == 'completed':
+            return data, None
+        elif data['status'] == 'error':
+            return data, data['error']
 
 #save transcript
+
+
+
+
+
+
+
+
+audio_url = upload(filename)
+data, error = get_transcription_result_url(audio_url)
+
+print(data)
