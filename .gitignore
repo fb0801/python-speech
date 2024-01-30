@@ -177,3 +177,4 @@ pyrightconfig.json
 
 speech-recg/api_secret.py
 sentimentClassification/api_secrets.py
+podcastWebApp/api_secrets.py
