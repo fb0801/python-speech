@@ -57,14 +57,17 @@ def get_transcription_result_url(audio_url):
 
 #save transcript
 
+def save_transcript(audio_url):
+    data, error = get_transcription_result_url(audio_url)
 
+    if data:
+        text_filename = filename + ".txt"
+        with open(text_filename, 'w') as f:
+            f.write(data['text'])
+        print('transcription saved')
+    elif error:
+        print('error occured', error)
 
-
-
-
-
-
+#print(data)
 audio_url = upload(filename)
-data, error = get_transcription_result_url(audio_url)
-
-print(data)
+save_transcript(audio_url)
