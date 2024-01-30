@@ -17,3 +17,5 @@ original repo -> https://github.com/AssemblyAI-Examples/python-speech-recognitio
 https://www.toptal.com/developers/gitignore/
 
 https://www.assemblyai.com
+
+https://www.listennotes.com/
