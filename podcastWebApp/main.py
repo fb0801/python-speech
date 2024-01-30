@@ -1,3 +1,30 @@
 from api_communication import *
+import streamlit as st
+import json
 
-get_episode_audio_url("")
+st.title('podcast summeries')
+episode_id = st.sidebar.text_input('input eposode id')
+button = st.sidebar.button("Download Episode summary", on_click=save_transcript, args=(episode_id,))
+
+
+
+if button:
+    filename = episode_id + '_chapters.json'
+    print(filename)
+    with open(filename, 'r') as f:
+        data = json.load(f)
+
+    chapters = data['chapters']
+    episode_title = data['episode_title']
+    thumbnail = data['thumbnail']
+    podcast_title = data['podcast_title']
+    audio = data['audio_url']
+
+    st.header(f"{podcast_title} - {episode_title}")
+    st.image(thumbnail, width=200)
+    st.markdown(f'#### {episode_title}')
+
+    for chp in chapters:
+        with st.expander(chp['gist'] + ' - ' + get_clean_time(chp['start'])):
+            chp['summary']
+#get_episode_audio_url("")

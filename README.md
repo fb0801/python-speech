@@ -19,3 +19,5 @@ https://www.toptal.com/developers/gitignore/
 https://www.assemblyai.com
 
 https://www.listennotes.com/
+
+https://pypi.org/project/streamlit/
