@@ -21,3 +21,5 @@ https://www.assemblyai.com
 https://www.listennotes.com/
 
 https://pypi.org/project/streamlit/
+
+https://websockets.readthedocs.io/en/stable/intro/index.html
